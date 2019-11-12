@@ -1,23 +1,14 @@
-// exercicio 5
+// exercicio 6
+const usuario = 'Diego';
+const idade = 23;
+console.log(`O usuário ${usuario} possui ${idade} anos`);
 
-//5.1 Rest
-const arr = [1, 2, 3, 4, 5, 6];
+// exercicio 7
+const nome = 'Diego';
+const idade = 23;
 
-const [x, ...y] = arr;
-
-//5.2 Spread
 const usuario = {
-    nome: 'Diego',
-    idade: 23,
-    endereco: {
-        cidade: 'Rio do Sul',
-        uf: 'SC',
-        pais: 'Brasil',
-    }
-};
-
-const usuario2 = {...usuario, nome: 'Gabriel'};
-const usuario3 = {
-    ...usuario,
-    endereco: {...usuario.endereco, cidade: 'Lontras'}
+    nome,
+    idade,
+    cidade: 'Rio do Sul',
 };
