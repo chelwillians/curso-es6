@@ -1,12 +1,12 @@
-import ClasseUsuario from './functions';
+const minhaPromise = () => new Promise((resolve, reject) => 
+    setTimeout(() => { resolve('ok') }, 2000)
+)
 
-ClasseUsuario.info();
+async function executaPromise(){
+    console.log(await minhaPromise());
+    console.log(await minhaPromise());
+    console.log(await minhaPromise());
+}
 
-// 
+executaPromise();
 
-import { idade } from './functions';
-console.log(idade);
-
-// 
-import Usuario, { idade as IdadeUsuario } from './functions';
-console.log('Idade Usuario: ' + IdadeUsuario);
