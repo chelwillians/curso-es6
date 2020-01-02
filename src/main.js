@@ -1,62 +1,61 @@
-// 1
+class App{
+    constructor(){
+        this.repositories = [];
 
-// Função delay aciona o .then após 1s
-// const delay = () => new Promise((resolve, reject) =>
-//     setTimeout(() => { resolve(); }, 1000)
-// );
+        this.formEl = document.getElementById('repo-form');
+        this.listEl = document.getElementById('repo-list');
 
-// const umPorSegundo = async () => {
-//     await delay();
-//     console.log('1s');
+        this.registerHandlers();
+    }
 
-//     await delay();
-//     console.log('2s');
+    //Registra evento
+    registerHandlers(){
 
-//     await delay();
-//     console.log('3s');
-// }
-// umPorSegundo();
+        //ouve quando teve submit
+        this.formEl.onsubmit = (event) => this.addRepository(event);
+    }
 
-// 2
+    addRepository(event) {
+        // previne que recarrega
+        event.preventDefault();
 
-import axios from "axios";
+        this.repositories.push({
+            name: 'Teste',
+            descript: 'Lorem Lorem Lorem Lorem',
+            avatar_url: 'https://avatars0.githubusercontent.com/u/28929274?v=4',
+            html_url: '#'
+        });
 
-// async function getUserFromGithub(user) {
-//     try {
-//         const response = await axios.get(`https://api.github.com/users/${user}`);
+        this.render();
+    }
 
-//         console.log(response.data);
-//     } catch (err) {
-//         console.log("Usuário não existe");
-//     }
-// }
+    render(){
+        this.listEl.innerHTML = '';
 
-// getUserFromGithub("diego3g");
-// getUserFromGithub("diego3g124123");
+        this.repositories.forEach(repo => {
+            let imgEl = document.createElement('img');
+            imgEl.setAttribute('src', repo.avatar_url);
 
-// 3
+            let strongEl = document.createElement('strong');
+            strongEl.appendChild(document.createTextNode(repo.name));
 
-class Github {
-    static async getRepositories(repo) {
-        try {
-            const response = await axios.get(`https://api.github.com/repos/${repo}`);
-            console.log(response.data);
-        } catch (error) {
-            console.log('Repositório não existe');
-        }
+            let descriptionEl = document.createElement('p');
+            descriptionEl.appendChild(document.createTextNode(repo.descript));
+
+            let linkEl = document.createElement('a');
+            linkEl.setAttribute('target', '_blank');
+            linkEl.appendChild(document.createTextNode('Acessar'));
+
+            let listItemEl = document.createElement('li');
+
+            listItemEl.appendChild(imgEl);
+            listItemEl.appendChild(strongEl);
+            listItemEl.appendChild(descriptionEl);
+            listItemEl.appendChild(linkEl);
+
+            this.listEl.appendChild(listItemEl);
+        })
     }
 }
-Github.getRepositories('chelwillians/chelwillians.github.io');
-Github.getRepositories('chelwillians/teste');
 
-// 4
-
-// const buscaUsuario = async usuario => {
-//     try {
-//         const response = await axios.get(`https://api.github.com/users/${usuario}`);
-//         console.log(response.data);
-//     } catch (err) {
-//         console.log('Usuário não existe');
-//     }
-// }
-// buscaUsuario('chelwillians');
+new App();
