@@ -44,7 +44,7 @@ class App {
         try {
             const response = await api.get(`/users/${repoInput}`);
 
-            console.log(response);
+            // console.log(response);
 
             const { name, bio, html_url, avatar_url } = response.data;
 
