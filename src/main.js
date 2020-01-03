@@ -42,9 +42,9 @@ class App {
         this.setLoading();
 
         try {
-            const response = await api.get(`/repos/${repoInput}`);
+            const response = await api.get(`/users/${repoInput}`);
 
-            const { name, description, html_url, owner: { avatar_url } } = response.data;
+            const { name, description, html_url, avatar_url } = response.data;
 
             // objeto do elemento
             this.repositories.push({
@@ -58,7 +58,7 @@ class App {
 
             this.render();
         } catch (error) {
-            alert('Repositório não existe.');
+            alert('Usuário não existe.');
         }
 
         this.setLoading(false);
