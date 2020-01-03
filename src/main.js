@@ -44,12 +44,14 @@ class App {
         try {
             const response = await api.get(`/users/${repoInput}`);
 
-            const { name, description, html_url, avatar_url } = response.data;
+            console.log(response);
+
+            const { name, bio, html_url, avatar_url } = response.data;
 
             // objeto do elemento
             this.repositories.push({
                 name,
-                description,
+                bio,
                 avatar_url,
                 html_url
             });
@@ -75,7 +77,7 @@ class App {
             strongEl.appendChild(document.createTextNode(repo.name));
 
             let descriptionEl = document.createElement('p');
-            descriptionEl.appendChild(document.createTextNode(repo.descript));
+            descriptionEl.appendChild(document.createTextNode(repo.bio));
 
             let linkEl = document.createElement('a');
             linkEl.setAttribute('target', '_blank');
